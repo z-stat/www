@@ -62,7 +62,7 @@ app.get('/row_bkg.png', function(req, res){
 io.on('connection', function (socket) {
   socket.emit('news', obj);
   socket.on('my other event', function (obj) {
-    console.log(obj);
+    
   });
 });
 
