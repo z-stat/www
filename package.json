@@ -1,0 +1,19 @@
+{
+  "name": "www",
+  "version": "1.0.0",
+  "description": "servers node",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "micro",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "http": "0.0.0",
+    "node-rest-client": "^2.0.1",
+    "socket.io": "^1.4.8",
+    "underscore": "^1.8.3",
+    "unirest": "^0.5.1"
+  }
+}

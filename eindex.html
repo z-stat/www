@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      
+      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+
+         <style type="text/css">
+        body { font-family:Arial, Helvetica, Sans-Serif; font-size:0.8em;}
+        #report { border-collapse:collapse;}
+        #report h4 { margin:0px; padding:0px;}
+        #report img { float:right;}
+        #report ul { margin:10px 0 10px 40px; padding:0px;}
+        #report th { background:#7CB8E2 url(header_bkg.png) repeat-x scroll center left; color:#fff; padding:7px 15px; text-align:left;}
+        #report td { background:#C7DDEE none repeat-x scroll center left; color:#000; padding:7px 15px; }
+        #report tr.odd td { background:#fff url(row_bkg.png) repeat-x scroll center left; cursor:pointer; }
+        #report div.arrow { background:transparent url(arrows.png) no-repeat scroll 0px -16px; width:16px; height:16px; display:block;}
+        #report div.up { background-position:0px 0px;}
+    </style>
+    </style>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      var socket = io();
+      var obj = {};
+      $('form').submit(function(){
+        socket.emit('chat message', $('#m').val());
+        $('#m').val('');
+        return false;
+      });
+      socket.on('chat message', function(msg, obj){
+        
+        $('#messages').append($('<li>').text(msg));
+        $('#messages').append($('<li>').text(obj));
+      });
+      socket.on('news', function (obj) {
+        console.log(data); 
+              
+               for (i in obj){
+
+
+                   var data[i].chanel_name = obj[i].channel;
+                   var data[i].device_online = obj[i].devices_online;
+                   var data[i].user_online = obj[i].users_online;
+                   var data[i].admin = obj[i].owner_name ;
+                   var data[i].moder = obj[i].moderators ;
+                   var data[i].online = obj[i].users_online;
+                   var data[i].channel_description = obj[i].channel_description;
+                   var data[i].picture = obj[i].profile.picture;
+                   var data[i].voice = obj[i].profile.voice;
+               }
+              
+              for (i = 0; i < data.length; ++i){
+                  
+                  console.log( "[" + i + "]:"+ data[i].channel +"  ("+ data[i].devices_online +")"+ data[i].owner_name  + data[i].users_online  + data[i].channel_description   + data[i].profile.picture);
+
+                // fs.writeFileSync('logt.txt', data[i].profile.voice)
+              }
+        socket.emit('my other event', data);
+      });
+    </script>
+        <table id="report">
+        <tr>
+            <th>Country</th>
+            <th>Population</th>
+            <th>Area</th>
+            <th>Official languages</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>United States of America</td>
+            <td>306,939,000</td>
+            <td>9,826,630 km2</td>
+            <td>English</td>
+            <td><div class="arrow"></div></td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <img src="125px-Flag_of_the_United_States.svg.png" alt="Flag of USA" />
+                <h4>Additional information</h4>
+                <ul>
+                    <li><a href="http://en.wikipedia.org/wiki/Usa">USA on Wikipedia</a></li>
+                    <li><a href="http://nationalatlas.gov/">National Atlas of the United States</a></li>
+                    <li><a href="http://www.nationalcenter.org/HistoricalDocuments.html">Historical Documents</a></li>
+                 </ul>   
+            </td>
+        </tr>
+        <tr>
+            <td>United Kingdom </td>
+            <td>61,612,300</td>
+            <td>244,820 km2</td>
+            <td>English</td>
+            <td><div class="arrow"></div></td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <img src="125px-Flag_of_the_United_Kingdom.svg.png" alt="Flag of UK" />
+                <h4>Additional information</h4>
+                <ul>
+                    <li><a href="http://en.wikipedia.org/wiki/United_kingdom">UK on Wikipedia</a></li>
+                    <li><a href="http://www.visitbritain.com/">Official tourist guide to Britain</a></li>
+                    <li><a href="http://www.statistics.gov.uk/StatBase/Product.asp?vlnk=5703">Official 
+                        Yearbook of the United Kingdom</a></li>
+                </ul>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>India</td>
+            <td>1,147,995,904</td>
+            <td>3,287,240‡ km2</td>
+            <td>Hindi, English</td>
+            <td><div class="arrow"></div></td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <img src="125px-Flag_of_India.svg.png" alt="Flag of India" />
+                <h4>Additional information</h4>
+                <ul>
+                    <li><a href="http://en.wikipedia.org/wiki/India">India on Wikipedia</a></li>
+                    <li><a href="http://india.gov.in/">Government of India</a></li>
+                    <li><a href="http://wikitravel.org/en/India">India travel guide</a></li>
+                 </ul>   
+            
+            </td>
+        </tr>
+        <tr>
+            <td>Canada</td>
+            <td>33,718,000</td>
+            <td>9,984,670 km2</td>
+            <td>English, French</td>
+            <td><div class="arrow"></div></td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <img src="125px-Flag_of_Canada.svg.png" alt="Flag of Canada" />
+                <h4>Additional information</h4>
+                <ul>
+                    <li><a href="http://en.wikipedia.org/wiki/Canada">Canada on Wikipedia</a></li>
+                    <li><a href="http://atlas.gc.ca/site/index.html" >Official 
+                        Government of Canada online Atlas of Canada</a></li>
+                    <li><a href="http://wikitravel.org/en/Canada">Canada travel guide</a></li>
+                 </ul>   
+            </td>
+        </tr>
+        <tr>
+            <td>Germany</td>
+            <td>82,060,000</td>
+            <td>357,021 km2</td>
+            <td>German</td>
+            <td><div class="arrow"></div></td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <img src="125px-Flag_of_Germany.svg.png" alt="Flag of Germany" />
+                <h4>Additional information</h4>
+                <ul>
+                    <li><a href="http://en.wikipedia.org/wiki/Germany">Germany on Wikipedia</a></li>
+                    <li><a href="http://www.deutschland.de/home.php?lang=2">Deutschland.de Official Germany portal</a></li>
+                    <li><a href="http://www.cometogermany.com/">Germany Travel Info</a></li>
+                 </ul>   
+            </td>
+        </tr>
+    </table>
+  </body>
+</html>
